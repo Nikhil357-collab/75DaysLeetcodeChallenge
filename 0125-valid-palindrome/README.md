@@ -1,3 +1,35 @@
+OR
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
+        
+        def isPalindrome(left, right):
+            while left < right:
+                if s[left] != s[right]:
+                    return False
+                left += 1
+                right -= 1
+            return True
+
+        left, right = 0, len(s) - 1
+
+        while left < right:
+            if s[left] != s[right]:
+                # try removing left OR right
+                return isPalindrome(left + 1, right) or isPalindrome(left, right - 1)
+            
+            left += 1
+            right -= 1
+
+        return True
+
+
+
+
+
+
+
+
+
 <h2><a href="https://leetcode.com/problems/valid-palindrome">125. Valid Palindrome</a></h2><h3>Easy</h3><hr><p>A phrase is a <strong>palindrome</strong> if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.</p>
 
 <p>Given a string <code>s</code>, return <code>true</code><em> if it is a <strong>palindrome</strong>, or </em><code>false</code><em> otherwise</em>.</p>
